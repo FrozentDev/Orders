@@ -2669,9 +2669,10 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueText.ZIndex = ZIndex + 4
 		ValueText.FontFace = Fatality.FontSemiBold
 		ValueText.Text = string.format('%s%s',tostring(Config.Default),tostring(Config.Type));
-		ValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ValueText.TextColor3 = Color3.fromRGB(0, 0, 0)
 		ValueText.TextSize = 9.000
-		ValueText.TextStrokeTransparency = 0.850;
+		ValueText.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+		ValueText.TextStrokeTransparency = 0.500;
 		ValueText.TextTransparency = 0;
 
 		local OpcToggle = function(value)
