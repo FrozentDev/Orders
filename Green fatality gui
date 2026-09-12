@@ -289,7 +289,7 @@ Fatality.FontSemiBold = Font.new('rbxasset://fonts/families/GothamSSm.json',Enum
 Fatality.Flags = {};
 Fatality.Colors = {
 	Black = Color3.fromRGB(16, 16, 16),
-	Main = Color3.fromRGB(0, 255, 154)
+	Main = Color3.fromRGB(255, 255, 255)
 };
 Fatality.DragBlacklist = {};
 Fatality.Version = '1.6';
@@ -2285,6 +2285,7 @@ function Fatality:CreateDropdown(Parent: Frame, Default: string | {[string]: boo
 						bth.TextColor3 = Fatality.Colors.Main;
 					else
 						bth.TextColor3 = Color3.fromRGB(255, 255, 255);
+						bth.TextTransparency = 0.45;
 						Selected[v] = false
 					end
 
@@ -2295,6 +2296,7 @@ function Fatality:CreateDropdown(Parent: Frame, Default: string | {[string]: boo
 							bth.TextColor3 = Fatality.Colors.Main;
 						else
 							bth.TextColor3 = Color3.fromRGB(255, 255, 255);
+						bth.TextTransparency = 0.45;
 						end;
 
 						Callback(Selected);
@@ -6448,9 +6450,15 @@ function Fatality:Loader(Config: Loader)
 		ASCII.Size = UDim2.new(0, textsize.X + 100, 0, 50)
 		LIT.Size = UDim2.new(0, (textsize.X * 2.5) + (UText[TEXT] or 0), 0, 100)
 
-		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 116, 116)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(132, 58, 58))}
+		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 10, 10)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 10, 10))}
 		UIGradient.Rotation = 88
 		UIGradient.Parent = ASCII
+
+		TweenService:Create(
+			UIGradient,
+			TweenInfo.new(1.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+			{Offset = Vector2.new(1, 0)}
+		):Play()
 
 		UIScale.Parent = ASCII
 		UIScale.Scale = Config.Scale
@@ -6506,9 +6514,15 @@ function Fatality:Loader(Config: Loader)
 
 		StartText.Size = UDim2.new(0, baseSIZX + 100, 0, 50)
 
-		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 116, 116)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(132, 58, 58))}
+		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 10, 10)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 10, 10))}
 		UIGradient.Rotation = 88
 		UIGradient.Parent = StartText
+
+		TweenService:Create(
+			UIGradient,
+			TweenInfo.new(1.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+			{Offset = Vector2.new(1, 0)}
+		):Play()
 
 		UIScale.Parent = StartText
 		UIScale.Scale = Config.Scale * 4;
