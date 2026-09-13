@@ -4459,21 +4459,22 @@ function Fatality.new(Window: Window)
 	HeaderText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderText.TextStrokeTransparency = 0.7
 
-	-- Black & White shimmer gradient for title
+	-- White wave shimmer (never fully darkens)
 	local HeaderGradient = Instance.new("UIGradient")
 	HeaderGradient.Color = ColorSequence.new({
-		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 30)),
-		ColorSequenceKeypoint.new(0.45, Color3.fromRGB(255, 255, 255)),
-		ColorSequenceKeypoint.new(0.55, Color3.fromRGB(255, 255, 255)),
-		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 30))
+		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(170, 170, 170)),
+		ColorSequenceKeypoint.new(0.35, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(0.65, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(170, 170, 170))
 	})
 	HeaderGradient.Rotation = 0
 	HeaderGradient.Parent = HeaderText
 
-	-- Continuous left-to-right shimmer animation
+	-- Continuous white wave animation
 	TweenService:Create(
 		HeaderGradient,
-		TweenInfo.new(2.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true),
+		TweenInfo.new(2.0, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true),
 		{Offset = Vector2.new(1, 0)}
 	):Play()
 
