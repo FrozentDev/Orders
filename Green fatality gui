@@ -4454,10 +4454,28 @@ function Fatality.new(Window: Window)
 	HeaderText.ZIndex = 4
 	HeaderText.Font = Enum.Font.GothamBold
 	HeaderText.Text = Window.Name
-	HeaderText.TextColor3 = Color3.fromRGB(229, 229, 229)
+	HeaderText.TextColor3 = Color3.fromRGB(255, 255, 255)
 	HeaderText.TextSize = 21.000
-	HeaderText.TextStrokeColor3 = Color3.fromRGB(205, 67, 218)
-	HeaderText.TextStrokeTransparency = 0.640
+	HeaderText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+	HeaderText.TextStrokeTransparency = 0.7
+
+	-- Black & White shimmer gradient for title
+	local HeaderGradient = Instance.new("UIGradient")
+	HeaderGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 30)),
+		ColorSequenceKeypoint.new(0.45, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(0.55, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 30))
+	})
+	HeaderGradient.Rotation = 0
+	HeaderGradient.Parent = HeaderText
+
+	-- Continuous left-to-right shimmer animation
+	TweenService:Create(
+		HeaderGradient,
+		TweenInfo.new(2.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true),
+		{Offset = Vector2.new(1, 0)}
+	):Play()
 
 	MenuButtonCont.Name = Fatality:RandomString()
 	MenuButtonCont.Parent = Header
